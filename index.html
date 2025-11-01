@@ -1,593 +1,260 @@
-    <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Приют для крыс "Новый шанс"</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* CSS Reset */
-        *, *::before, *::after { box-sizing: border-box; }
-        body, h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
-        ul[role='list'], ol[role='list'] { list-style: none; }
-        html:focus-within { scroll-behavior: smooth; }
-        body { min-height: 100vh; text-rendering: optimizeSpeed; line-height: 1.5; }
-        a:not([class]) { text-decoration-skip-ink: auto; }
-        img, picture { max-width: 100%; display: block; }
-        input, button, textarea, select { font: inherit; }
-        @media (prefers-reduced-motion: reduce) {
-            html:focus-within { scroll-behavior: auto; }
-            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-        }
-
-        /* Variables and Base Styles */
-        :root {
-            --brand-beige: #F5F5DC;
-            --brand-brown: #A0522D;
-            --brand-green: #556B2F;
-            --brand-orange: #D2691E;
-            --stone-50: #fafaf9;
-            --stone-300: #d6d3d1;
-            --stone-400: #a8a29e;
-            --stone-500: #78716c;
-            --stone-600: #57534e;
-            --stone-800: #292524;
-            --white: #ffffff;
-            --black-t-50: rgba(0,0,0,0.5);
-        }
-
+<!DOCTYPE html>
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Приют для крыс "Новый шанс"</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--white);
-            color: var(--stone-600);
+            font-family: 'Lato', sans-serif;
         }
-
-        .container {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
         }
-        @media (min-width: 640px) { .container { max-width: 640px; } }
-        @media (min-width: 768px) { .container { max-width: 768px; } }
-        @media (min-width: 1024px) { .container { max-width: 1024px; } }
-        @media (min-width: 1280px) { .container { max-width: 1280px; } }
-
-        /* Header */
-        .header {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        }
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--brand-green);
-            text-decoration: none;
-        }
-        .logo svg { width: 2rem; height: 2rem; }
-        .nav { display: none; }
-        @media (min-width: 768px) {
-            .nav { display: flex; gap: 2rem; }
-        }
-        .nav a {
-            color: var(--stone-600);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .nav a:hover { color: var(--brand-green); }
-        .header-button {
-            display: none;
-            background-color: var(--brand-orange);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        .header-button:hover { background-color: rgba(210, 105, 30, 0.9); }
-        @media (min-width: 768px) { .header-button { display: inline-block; } }
-
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-        }
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('slyfox-photography-BYtFC4Iyk0c-unsplash.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .hero-overlay { position: absolute; inset: 0; background-color: var(--black-t-50); }
-        .hero-content { position: relative; z-index: 10; padding: 1rem; }
-        .hero h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .hero p {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-            max-width: 42rem;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;}
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-size: 1.125rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
-        .btn-primary {
-            background-color: var(--brand-orange);
-            color: var(--white);
-        }
-        .btn-primary:hover {
-            background-color: rgba(210, 105, 30, 0.9);
-            transform: scale(1.05);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--white);
-            color: var(--white);
-        }
-        .btn-secondary:hover {
-            background-color: var(--white);
-            color: var(--stone-800);
-        }
-        @media (min-width: 768px) {
-            .hero h1 { font-size: 3.75rem; }
-            .hero p { font-size: 1.25rem; }
-        }
-
-        /* General Section Styles */
-        .section { padding: 5rem 0; }
-        .section-title { font-size: 2.25rem; font-weight: 700; color: var(--stone-800); text-align: center; margin-bottom: 3rem; }
-        .section-subtitle { text-align: center; color: var(--stone-600); margin-bottom: 3rem; max-width: 42rem; margin-left: auto; margin-right: auto; }
-        .bg-stone-50 { background-color: var(--stone-50); }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            gap: 3rem;
-            align-items: center;
-        }
-        @media (min-width: 768px) { .about-grid { grid-template-columns: repeat(2, 1fr); } }
-        .about-grid img {
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .about-content h2 { font-size: 1.875rem; font-weight: 700; color: var(--stone-800); margin-bottom: 1rem; text-align: left; }
-        .about-content p { line-height: 1.75; margin-bottom: 1rem; }
-
-        /* Residents & Stories Section */
-        .card-grid {
-            display: grid;
-            gap: 2rem;
-        }
-        @media (min-width: 768px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .residents-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 768px) { .stories-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .card {
-            background-color: var(--stone-50);
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-        .card:hover { transform: translateY(-0.5rem); }
-        .card img { width: 100%; height: 12rem; object-fit: cover; }
-        .card-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-title { font-size: 1.25rem; font-weight: 700; color: var(--brand-green); margin-bottom: 0.5rem; }
-        .card-text { margin-bottom: 1rem; flex-grow: 1; }
-        .card-buttons { margin-top: auto; padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-        .card-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        .card-btn-primary { background-color: var(--brand-green); color: var(--white); }
-        .card-btn-primary:hover { background-color: rgba(85, 107, 47, 0.9); }
-        .card-btn-secondary { border-color: var(--brand-orange); color: var(--brand-orange); }
-        .card-btn-secondary:hover { background-color: var(--brand-orange); color: var(--white); }
-
-        /* How to Help Section */
-        .help-grid { display: grid; gap: 2rem; text-align: center; }
-        @media (min-width: 768px) { .help-grid { grid-template-columns: repeat(3, 1fr); } }
-        .help-card { background-color: var(--white); padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-        .help-icon-wrapper {
-            background-color: var(--brand-orange);
-            color: var(--white);
-            width: 5rem;
-            height: 5rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 1.5rem;
-        }
-        .help-icon-wrapper svg { width: 2.5rem; height: 2.5rem; }
-        .help-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--stone-800); margin-bottom: 0.5rem; }
-        .help-card p { margin-bottom: 1.5rem; }
-        .help-card .btn { display: inline-block; background-color: var(--brand-orange); color: var(--white); padding: 0.5rem 1.5rem; }
-        .help-card .btn:hover { background-color: rgba(210, 105, 30, 0.9); }
-
-        /* Success Stories */
-        .story-card { background-color: var(--stone-50); border-radius: 0.5rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-        .story-card-content { padding: 1.5rem; }
-        .story-card blockquote { border-left: 4px solid var(--brand-green); padding-left: 1rem; }
-        .story-card p { font-style: italic; margin-bottom: 1rem; }
-        .story-card footer { font-weight: 700; color: var(--stone-800); }
-
-        /* Newsletter Section */
-        .newsletter { background-color: var(--brand-green); color: var(--white); }
-        .newsletter-content { text-align: center; }
-        .newsletter h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 1rem; color: var(--white); }
-        .newsletter p { max-width: 36rem; margin-left: auto; margin-right: auto; margin-bottom: 2rem; }
-        .newsletter-form { max-width: 32rem; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; gap: 1rem; }
-        @media (min-width: 640px) { .newsletter-form { flex-direction: row; } }
-        .newsletter-form input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 9999px;
-            color: var(--stone-800);
-            border: none;
-        }
-        .newsletter-form input:focus { outline: 2px solid var(--brand-orange); outline-offset: 2px; }
-        .newsletter-form button {
-            background-color: var(--brand-orange);
-            color: var(--white);
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .newsletter-form button:hover { background-color: rgba(210, 105, 30, 0.9); }
-
-        /* Contact Section */
-        .contact-wrapper {
-            max-width: 64rem;
-            margin-left: auto;
-            margin-right: auto;
-            display: grid;
-            gap: 3rem;
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-        @media (min-width: 768px) { .contact-wrapper { grid-template-columns: repeat(2, 1fr); padding: 3rem; } }
-        .contact-info h3 { font-size: 1.5rem; font-weight: 700; color: var(--stone-800); margin-bottom: 1rem; }
-        .contact-info p { margin-bottom: 0.5rem; }
-        .contact-info p:last-of-type { margin-bottom: 1.5rem; }
-        .contact-info a { color: var(--brand-green); text-decoration: none; }
-        .contact-info a:hover { text-decoration: underline; }
-        .contact-info h4 { font-size: 1.25rem; font-weight: 700; color: var(--stone-800); margin-bottom: 0.75rem; }
-        .social-icons { display: flex; gap: 1rem; }
-        .social-icons a { color: var(--stone-500); transition: color 0.3s ease; }
-        .social-icons a:hover { color: var(--brand-orange); }
-        .social-icons svg { width: 2rem; height: 2rem; }
-
-        .contact-form div { display: flex; flex-direction: column; gap: 1rem; }
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--stone-300);
-            border-radius: 0.5rem;
-        }
-        .form-input:focus, .form-textarea:focus { outline: 2px solid var(--brand-green); outline-offset: 2px; }
-        .form-button {
-            width: 100%;
-            background-color: var(--brand-green);
-            color: var(--white);
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-button:hover { background-color: rgba(85, 107, 47, 0.9); }
-
-        /* Footer */
-        .footer {
-            background-color: var(--stone-800);
-            color: var(--stone-400);
-            padding: 2rem 0;
-            text-align: center;
-        }
-        .footer p:first-child { margin-bottom: 0.5rem; }
-        .footer p:last-child { font-style: italic; }
-
     </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FF7043", // Яркий оранжевый
+              "background-light": "#F5F0E6", // Светло-бежевый
+              "background-dark": "#211811",
+              "text-primary": "#6D4C41", // Глубокий коричневый
+              "accent-green": "#8A9A5B", // Приглушенный зеленый
+            },
+            fontFamily: {
+              "display": ["Montserrat", "sans-serif"],
+              "body": ["Lato", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
 </head>
-<body>
-
-    <header class="header">
-        <div class="container">
-            <a href="#hero" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 13c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-7 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.5-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 4c-.83 0-1.5-.67-1.5-1.5S11.17 9 12 9s1.5.67 1.5 1.5S12.83 12 12 12z"/>
-                </svg>
-                <span>Новый шанс</span>
-            </a>
-            <nav class="nav">
-                <a href="#about">О приюте</a>
-                <a href="#residents">Подопечные</a>
-                <a href="#help">Как помочь</a>
-                <a href="#contact">Контакты</a>
-            </nav>
-            <a href="#help" class="header-button">Помочь</a>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Каждая крыса заслуживает второй шанс</h1>
-                <p>Мы дарим надежду, заботу и новую жизнь тем, от кого отказались.</p>
-                <div class="hero-buttons">
-                    <a href="#help" class="btn btn-primary">Помочь сейчас</a>
-                    <a href="#about" class="btn btn-secondary">Узнать больше</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section bg-stone-50">
-            <div class="container">
-                <div class="about-grid">
-                    <div>
-                        <img src="https://cdn.shopify.com/s/files/1/0424/4606/1723/files/Rats-with-Teddy-Bears-14_grande.jpg?v=1594378619" alt="Крыса на руках" />
-                    </div>
-                    <div class="about-content">
-                        <h2>О нашем приюте "Новый шанс"</h2>
-                        <p>
-                            "Новый шанс" — это не просто приют, это дом, где маленькие жизни обретают надежду. Все началось с нескольких неравнодушных людей и одной спасенной крысы. Сегодня мы — команда волонтеров, объединенная любовью к этим умным и удивительным животным.
-                        </p>
-                        <p>
-                            Мы спасаем декоративных крыс, оказавшихся на улице, забранных из лабораторий или зоомагазинов, где им грозила опасность. Каждое животное получает у нас квалифицированную ветеринарную помощь, правильное питание и, самое главное, — заботу и внимание, пока мы ищем для него постоянный дом. Наша миссия — показать, что крысы могут быть прекрасными компаньонами, и найти для каждого нашего подопечного любящую семью.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="residents" class="section">
-            <div class="container">
-                <h2 class="section-title">Наши подопечные</h2>
-                <p class="section-subtitle">Эти замечательные хвостики ждут свою семью. Может, среди них есть ваш будущий друг?</p>
-                <div class="card-grid residents-grid">
-                    <!-- Rat 1 -->
-                    <div class="card">
-                        <img src="https://images.ctfassets.net/rt5zmd3ipxai/1nkMZeIXuGOVCfhktUmXN0/3469a50254f33901d10f8289f0283ed1/ServiceCards-Rat.png" alt="Реми" />
-                        <div class="card-content">
-                            <h3 class="card-title">Реми</h3>
-                            <p class="card-text">Был найден на кухне ресторана. Мечтает стать шеф-поваром, но пока согласен на любящий дом.</p>
-                            <div class="card-buttons">
-                                <a href="#contact" class="card-btn card-btn-primary">Хочу усыновить</a>
-                                <a href="#help" class="card-btn card-btn-secondary">Хочу помочь</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rat 2 -->
-                    <div class="card">
-                        <img src="https://media.istockphoto.com/id/1326040459/photo/cute-small-rat-wrapped-in-knitted-plaid-closeup.jpg?s=612x612&w=0&k=20&c=GboLHYQxFxhYs3GJwfY7gSsCu-IJ9bJiaJtvB80zUPM=" alt="Сплинтер" />
-                        <div class="card-content">
-                            <h3 class="card-title">Сплинтер</h3>
-                            <p class="card-text">Мудрый и спокойный, бывший лабораторный крыс. Ищет тихий уголок для медитаций и вкусняшек.</p>
-                            <div class="card-buttons">
-                                <a href="#contact" class="card-btn card-btn-primary">Хочу усыновить</a>
-                                <a href="#help" class="card-btn card-btn-secondary">Хочу помочь</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rat 3 -->
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WFhTbdWt9E40kNRpoGgjg1RW6tcFMDorw8zg-bxtjaJC7USnuUtRSEIb_T6VPJu_NlM&usqp=CAU" alt="Фродо" />
-                        <div class="card-content">
-                            <h3 class="card-title">Фродо</h3>
-                            <p class="card-text">Маленький, но очень храбрый. Спасен с улицы. Любит приключения и сидеть на плече.</p>
-                            <div class="card-buttons">
-                                <a href="#contact" class="card-btn card-btn-primary">Хочу усыновить</a>
-                                <a href="#help" class="card-btn card-btn-secondary">Хочу помочь</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Rat 4 -->
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgCx_5hFOQHRgGJTzzr2lybVDM6lGel--e1RfSLmOdgSHggxO9JY7WktCkHqH9sKssjqU&usqp=CAU" alt="Пикассо" />
-                        <div class="card-content">
-                            <h3 class="card-title">Пикассо</h3>
-                            <p class="card-text">Творческая натура, обожает рвать бумагу и строить гнезда. Был спасен из зоомагазина.</p>
-                            <div class="card-buttons">
-                                <a href="#contact" class="card-btn card-btn-primary">Хочу усыновить</a>
-                                <a href="#help" class="card-btn card-btn-secondary">Хочу помочь</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="help" class="section bg-stone-50">
-            <div class="container">
-                <h2 class="section-title">Как вы можете помочь</h2>
-                <div class="help-grid">
-                    <div class="help-card">
-                        <div class="help-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                            </svg>
-                        </div>
-                        <h3>Пожертвовать</h3>
-                        <p>Любая сумма поможет нам оплатить корм, лечение и содержание крыс. Это самый прямой способ спасти жизнь.</p>
-                        <a href="#" class="btn">Сделать взнос</a>
-                    </div>
-                    <div class="help-card">
-                        <div class="help-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.663l.001.109m-8.374 2.469a4.125 4.125 0 01-7.533-2.493 4.125 4.125 0 017.533 2.493z" />
-                            </svg>
-                        </div>
-                        <h3>Стать волонтером</h3>
-                        <p>Нам всегда нужна помощь в уборке клеток, кормлении, социализации животных и транспортировке. Ваше время бесценно!</p>
-                        <a href="#contact" class="btn">Заполнить анкету</a>
-                    </div>
-                    <div class="help-card">
-                        <div class="help-icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5A2.25 2.25 0 0021 18.75V9.572a2.25 2.25 0 00-1.071-1.952L12.75 4.242a2.25 2.25 0 00-2.5 0L4.821 7.62A2.25 2.25 0 003.75 9.572v9.178A2.25 2.25 0 006 21h2.25m0 0h3.75" />
-                            </svg>
-                        </div>
-                        <h3>Взять крысу домой</h3>
-                        <p>Подарите дом одному из наших подопечных. Это лучший подарок, который вы можете сделать для них и для себя.</p>
-                        <a href="#residents" class="btn">Выбрать друга</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="stories" class="section">
-            <div class="container">
-                <h2 class="section-title">Истории счастья</h2>
-                <div class="card-grid stories-grid">
-                    <!-- Story 1 -->
-                    <div class="story-card">
-                        <img src="https://picsum.photos/seed/businka/400/300" alt="Бусинка"/>
-                        <div class="story-card-content">
-                            <blockquote>
-                                <p>"Малышка Бусинка, которую мы нашли замерзающей на улице, теперь живет в тепле и уюте. Её новая семья обожает её и балует йогуртом."</p>
-                                <footer>Семья Бусинки</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <!-- Story 2 -->
-                    <div class="story-card">
-                        <img src="https://picsum.photos/seed/professor/400/300" alt="Профессор"/>
-                        <div class="story-card-content">
-                            <blockquote>
-                                <p>"Профессор провел несколько лет в лаборатории, но теперь он познает радости домашней жизни: мягкий гамак, вкусные овощи и чесание за ушком."</p>
-                                <footer>Семья Профессора</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <!-- Story 3 -->
-                    <div class="story-card">
-                        <img src="https://picsum.photos/seed/shustrik/400/300" alt="Шустрик"/>
-                        <div class="story-card-content">
-                            <blockquote>
-                                <p>"Невероятно активный и любопытный Шустрик нашел семью, которая разделяет его любовь к играм. Теперь у него есть огромная клетка с лабиринтами!"</p>
-                                <footer>Семья Шустрика</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="newsletter" class="section newsletter">
-            <div class="container">
-                <div class="newsletter-content">
-                    <h2>Будьте в курсе наших новостей</h2>
-                    <p>Подпишитесь на нашу рассылку, чтобы первыми узнавать о новых подопечных, успешных историях и мероприятиях приюта.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Ваш email" required />
-                        <button type="submit">Подписаться</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section bg-stone-50">
-            <div class="container">
-                <h2 class="section-title">Свяжитесь с нами</h2>
-                <div class="contact-wrapper">
-                    <div class="contact-info">
-                        <h3>Наши контакты</h3>
-                        <p><strong>Адрес:</strong> г. Москва, ул. Уютная, д. 1 (посещение по предварительной договоренности)</p>
-                        <p><strong>Email:</strong> <a href="mailto:info@new-chance.ru">info@new-chance.ru</a></p>
-                        <p><strong>Телефон:</strong> <a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
-                        <h4>Мы в соцсетях</h4>
-                        <div class="social-icons">
-                            <a href="#" aria-label="Instagram">
-                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z" /></svg>
-                            </a>
-                            <a href="#" aria-label="VK">
-                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M13.16 18.99V13.6h2.22s.22-.09.22-.32v-2.02c0-.22-.16-.31-.16-.31h-2.28v-1.1c0-.5.2-.6.44-.6h1.2v-2.11s-1.07-.18-2.1-.18c-2.3 0-3.1 1.3-3.1 2.9v1.3H7.5s-.22.09-.22.32v2.02c0 .22.16.31.16.31h2.2v5.48s-.1 1.01 1.05 1.01h2.8s1.08 0 1.08-.83V19s.02-1.22-.55-1.22h-1.68z"/></svg>
-                            </a>
-                            <a href="#" aria-label="Telegram">
-                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.84c.12.13.11.33-.02.45l-7.98 7.09c-.21.19-.53.11-.64-.13l-1.89-4.2c-.08-.17.02-.38.2-.47l6.4-3.15c.18-.09.39.02.48.2zm-3.32 2.65c.13.12.33.11.45-.02l1.64-1.83c.12-.13.04-.34-.12-.39l-2.45-.75c-.2-.06-.39.08-.39.29v2.4c0 .1.05.2.17.3z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <form class="contact-form">
-                        <div>
-                            <input type="text" placeholder="Ваше имя" class="form-input" required />
-                            <input type="email" placeholder="Ваш Email" class="form-input" required />
-                            <textarea placeholder="Ваше сообщение" rows="5" class="form-textarea" required></textarea>
-                            <button type="submit" class="form-button">Отправить</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>© 2024 Приют "Новый шанс". Все права защищены.</p>
-            <p>Ваше добро делает мир теплее — даже для самых маленьких.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+<body class="bg-background-light dark:bg-background-dark text-text-primary dark:text-background-light font-body">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="w-full flex justify-center">
+<div class="layout-content-container flex flex-col w-full max-w-6xl px-4 md:px-10">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-text-primary/10 px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<a class="flex items-center gap-3 text-text-primary dark:text-background-light" href="#">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v.5a1.5 1.5 0 01-3 0v-.5a1 1 0 00-1-1H6a1 1 0 01-1-1v-3a1 1 0 011-1h.5a1.5 1.5 0 000-3H6a1 1 0 01-1-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"></path></svg>
+</div>
+<h2 class="font-display text-lg font-bold tracking-tight">Новый шанс</h2>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#about">О нас</a>
+<a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#pets">Крысы</a>
+<a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#help">Как помочь</a>
+<a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#contact">Контакты</a>
+</nav>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary text-white text-sm font-bold shadow-sm hover:bg-opacity-90 transition-all">
+<span>Взять крысу</span>
+</button>
+</header>
+<main class="flex-1">
+<!-- HeroSection -->
+<section class="py-16 md:py-24">
+<div class="flex min-h-[480px] flex-col gap-6 rounded-lg bg-cover bg-center bg-no-repeat items-center justify-center text-center p-8 md:p-12" data-alt="A cute, fluffy rat peeking curiously at the camera, with a soft, warm background." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("slyfox-photography-BYtFC4Iyk0c-unsplash.jpg");'>
+<div class="flex flex-col gap-4 max-w-2xl">
+<h1 class="font-display text-white text-4xl md:text-6xl font-black tracking-tight">Найди своего маленького друга</h1>
+<p class="text-white/90 text-base md:text-lg font-normal">Дарим крысам новый шанс на счастливую жизнь</p>
+</div>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-bold shadow-lg hover:scale-105 transition-transform">
+<span>Найти друга</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-background-light text-text-primary text-base font-bold shadow-lg hover:scale-105 transition-transform">
+<span>Помочь приюту</span>
+</button>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-16 md:py-24 text-center" id="about">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight">О нас</h2>
+<p class="text-text-primary/80 dark:text-background-light/80 text-base md:text-lg mt-4 max-w-3xl mx-auto">"Новый шанс" — это не просто приют, это дом, где маленькие жизни обретают надежду. Все началось с нескольких неравнодушных людей и одной спасенной крысы. Сегодня мы — команда волонтеров, объединенная любовью к этим умным и удивительным животным. Мы спасаем декоративных крыс, оказавшихся на улице, забранных из лабораторий или зоомагазинов, где им грозила опасность. Каждое животное получает у нас квалифицированную ветеринарную помощь, правильное питание и, самое главное, — заботу и внимание, пока мы ищем для него постоянный дом. Наша миссия — показать, что крысы могут быть прекрасными компаньонами, и найти для каждого нашего подопечного любящую семью.</p>
+</section>
+<!-- Pets Section -->
+<section class="py-16 md:py-24" id="pets">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight text-center">Наши подопечные</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+<!-- Rat Card 1 -->
+<div class="group relative overflow-hidden rounded-lg shadow-md bg-white/50 dark:bg-background-dark/50 transition-all hover:shadow-xl hover:-translate-y-1">
+<img class="h-60 w-full object-cover" data-alt="Реми" src="https://images.ctfassets.net/rt5zmd3ipxai/1nkMZeIXuGOVCfhktUmXN0/3469a50254f33901d10f8289f0283ed1/ServiceCards-Rat.png" />
+<div class="p-6">
+<h3 class="font-display text-xl font-bold text-text-primary dark:text-background-light">Реми</h3>
+<p class="text-sm text-text-primary/70 dark:text-background-light/70 mt-1">Был найден на кухне ресторана. Мечтает стать шеф-поваром, но пока согласен на любящий дом.</p>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white">Узнать больше</button>
+</div>
+</div>
+<!-- Rat Card 2 -->
+<div class="group relative overflow-hidden rounded-lg shadow-md bg-white/50 dark:bg-background-dark/50 transition-all hover:shadow-xl hover:-translate-y-1">
+<img class="h-60 w-full object-cover" data-alt="Сплинтер" src="https://media.istockphoto.com/id/1326040459/photo/cute-small-rat-wrapped-in-knitted-plaid-closeup.jpg?s=612x612&w=0&k=20&c=GboLHYQxFxhYs3GJwfY7gSsCu-IJ9bJiaJtvB80zUPM=" />
+<div class="p-6">
+<h3 class="font-display text-xl font-bold text-text-primary dark:text-background-light">Сплинтер</h3>
+<p class="text-sm text-text-primary/70 dark:text-background-light/70 mt-1">Мудрый и спокойный, бывший лабораторный крыс. Ищет тихий уголок для медитаций и вкусняшек.</p>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white">Узнать больше</button>
+</div>
+</div>
+<!-- Rat Card 3 -->
+<div class="group relative overflow-hidden rounded-lg shadow-md bg-white/50 dark:bg-background-dark/50 transition-all hover:shadow-xl hover:-translate-y-1">
+<img class="h-60 w-full object-cover" data-alt="Фродо" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WFhTbdWt9E40kNRpoGgjg1RW6tcFMDorw8zg-bxtjaJC7USnuUtRSEIb_T6VPJu_NlM&usqp=CAU" />
+<div class="p-6">
+<h3 class="font-display text-xl font-bold text-text-primary dark:text-background-light">Фродо</h3>
+<p class="text-sm text-text-primary/70 dark:text-background-light/70 mt-1">Маленький, но очень храбрый. Спасен с улицы. Любит приключения и сидеть на плече.</p>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white">Узнать больше</button>
+</div>
+</div>
+<!-- Rat Card 4 -->
+<div class="group relative overflow-hidden rounded-lg shadow-md bg-white/50 dark:bg-background-dark/50 transition-all hover:shadow-xl hover:-translate-y-1">
+<img class="h-60 w-full object-cover" data-alt="Пикассо" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgCx_5hFOQHRgGJTzzr2lybVDM6lGel--e1RfSLmOdgSHggxO9JY7WktCkHqH9sKssjqU&usqp=CAU" />
+<div class="p-6">
+<h3 class="font-display text-xl font-bold text-text-primary dark:text-background-light">Пикассо</h3>
+<p class="text-sm text-text-primary/70 dark:text-background-light/70 mt-1">Творческая натура, обожает рвать бумагу и строить гнезда. Был спасен из зоомагазина.</p>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white">Узнать больше</button>
+</div>
+</div>
+</div>
+</section>
+<!-- How to Help Section -->
+<section class="py-16 md:py-24 text-center" id="help">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight">Как помочь</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12">
+<div class="flex flex-col items-center gap-4 p-6 rounded-lg bg-accent-green/10 dark:bg-accent-green/20">
+<div class="flex items-center justify-center size-16 rounded-full bg-accent-green text-white">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</div>
+<h3 class="font-display text-lg font-bold">Пожертвовать</h3>
+<p class="text-sm text-text-primary/80 dark:text-background-light/80">Любая сумма поможет нам оплатить корм, лечение и содержание крыс. Это самый прямой способ спасти жизнь.</p>
+</div>
+<div class="flex flex-col items-center gap-4 p-6 rounded-lg bg-accent-green/10 dark:bg-accent-green/20">
+<div class="flex items-center justify-center size-16 rounded-full bg-accent-green text-white">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<h3 class="font-display text-lg font-bold">Стать волонтером</h3>
+<p class="text-sm text-text-primary/80 dark:text-background-light/80">Нам всегда нужна помощь в уборке клеток, кормлении, социализации животных и транспортировке. Ваше время бесценно!</p>
+</div>
+<div class="flex flex-col items-center gap-4 p-6 rounded-lg bg-accent-green/10 dark:bg-accent-green/20">
+<div class="flex items-center justify-center size-16 rounded-full bg-accent-green text-white">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+</div>
+<h3 class="font-display text-lg font-bold">Взять крысу домой</h3>
+<p class="text-sm text-text-primary/80 dark:text-background-light/80">Подарите дом одному из наших подопечных. Это лучший подарок, который вы можете сделать для них и для себя.</p>
+</div>
+</div>
+</section>
+<!-- Success Stories -->
+<section class="py-16 md:py-24">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight text-center">Истории успеха</h2>
+<div class="relative mt-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="rounded-lg p-6 bg-white/50 dark:bg-background-dark/50 flex flex-col md:flex-row items-center gap-6">
+<img class="size-32 rounded-full object-cover" data-alt="Бусинка" src="1.jpg" />
+<div class="text-center md:text-left">
+<p class="italic text-text-primary/90 dark:text-background-light/90">"Малышка Бусинка, которую мы нашли замерзающей на улице, теперь живет в тепле и уюте. Её новая семья обожает её и балует йогуртом."</p>
+<p class="font-bold mt-3 text-text-primary dark:text-background-light">— Семья Бусинки</p>
+</div>
+</div>
+<div class="rounded-lg p-6 bg-white/50 dark:bg-background-dark/50 flex flex-col md:flex-row items-center gap-6">
+<img class="size-32 rounded-full object-cover" data-alt="Шустрик" src="3.jpg" />
+<div class="text-center md:text-left">
+<p class="italic text-text-primary/90 dark:text-background-light/90">"Невероятно активный и любопытный Шустрик нашел семью, которая разделяет его любовь к играм. Теперь у него есть огромная клетка с лабиринтами!"</p>
+<p class="font-bold mt-3 text-text-primary dark:text-background-light">— Семья Шустрика</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Signup -->
+<section class="py-16 md:py-24">
+<div class="bg-accent-green rounded-lg text-center p-10 md:p-16">
+<h2 class="font-display text-3xl font-bold text-white tracking-tight">Оставайтесь на связи</h2>
+<p class="text-white/80 mt-2 max-w-xl mx-auto">Подпишитесь на нашу рассылку, чтобы получать новости о наших подопечных и мероприятиях.</p>
+<form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+<input class="flex-grow rounded-full border-0 px-5 py-3 text-text-primary focus:ring-2 focus:ring-primary" placeholder="Ваш email" type="email"/>
+<button class="rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-opacity-90 transition-colors" type="submit">Подписаться</button>
+</form>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-16 md:py-24" id="contact">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight">Контакты</h2>
+<p class="mt-4 text-text-primary/80 dark:text-background-light/80">Мы всегда рады гостям и готовы ответить на ваши вопросы.</p>
+<div class="mt-8 space-y-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">location_on</span>
+<div>
+<h3 class="font-bold">Адрес</h3>
+<p>г. Москва, ул. Уютная, д. 1 (посещение по предварительной договоренности)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">mail</span>
+<div>
+<h3 class="font-bold">Email</h3>
+<p><a class="hover:text-primary" href="mailto:info@new-chance.ru">info@new-chance.ru</a></p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined mt-1 text-primary">phone</span>
+<div>
+<h3 class="font-bold">Телефон</h3>
+<p><a class="hover:text-primary" href="tel:+79991234567">+7 (999) 123-45-67</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="h-80 md:h-full w-full rounded-lg overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="Карта" src="map.png" />
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="py-8 border-t border-text-primary/10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 text-text-primary dark:text-background-light">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v.5a1.5 1.5 0 01-3 0v-.5a1 1 0 00-1-1H6a1 1 0 01-1-1v-3a1 1 0 011-1h.5a1.5 1.5 0 000-3H6a1 1 0 01-1-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"></path></svg>
+</div>
+<span class="font-display font-bold">Новый шанс</span>
+</div>
+<p class="text-sm text-text-primary/70 dark:text-background-light/70">© 2024 Приют "Новый шанс". Все права защищены.</p>
+<div class="flex gap-4">
+<a class="text-text-primary/80 dark:text-background-light/80 hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-text-primary/80 dark:text-background-light/80 hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+<a class="text-text-primary/80 dark:text-background-light/80 hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="size-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.148 2 12.315 2zm-1.163 1.943c-1.049.045-1.71.218-2.227.427A3.397 3.397 0 006.168 5.6a3.397 3.397 0 00-.427 2.227c-.045 1.049-.06 1.378-.06 3.518s.015 2.47.06 3.518c.045 1.049.218 1.71.427 2.227a3.397 3.397 0 001.373 1.373c.517.209 1.178.382 2.227.427 1.049.045 1.378.06 3.518.06s2.47-.015 3.518-.06c1.049-.045 1.71-.218 2.227-.427a3.397 3.397 0 001.373-1.373c.209-.517.382-1.178.427-2.227.045-1.049.06-1.378.06-3.518s-.015-2.47-.06-3.518c-.045-1.049-.218-1.71-.427-2.227a3.397 3.397 0 00-1.373-1.373c-.517-.209-1.178-.382-2.227-.427-1.049-.045-1.378-.06-3.518-.06s-2.47.015-3.518.06zm2.844 2.894a4.102 4.102 0 110 8.204 4.102 4.102 0 010-8.204zm-1.8 4.102a1.8 1.8 0 103.6 0 1.8 1.8 0 00-3.6 0zm5.093-5.262a.962.962 0 100-1.924.962.962 0 000 1.924z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</body></html>
