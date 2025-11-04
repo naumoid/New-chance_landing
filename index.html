@@ -58,9 +58,9 @@
 <a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#help">Как помочь</a>
 <a class="text-text-primary dark:text-background-light text-sm font-medium hover:text-primary transition-colors" href="#contact">Контакты</a>
 </nav>
-<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary text-white text-sm font-bold shadow-sm hover:bg-opacity-90 transition-all">
+<a href="#adopt" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-primary text-white text-sm font-bold shadow-sm hover:bg-opacity-90 transition-all">
 <span>Взять крысу</span>
-</button>
+</a>
 </header>
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="fixed inset-0 z-60 hidden bg-black/50 transition-opacity duration-300 opacity-0">
@@ -195,6 +195,33 @@
 <p class="font-bold mt-3 text-text-primary dark:text-background-light">— Семья Шустрика</p>
 </div>
 </div>
+</div>
+</div>
+</section>
+<!-- Adopt Section -->
+<section class="py-16 md:py-24 text-center" id="adopt">
+<h2 class="font-display text-3xl md:text-4xl font-bold text-text-primary dark:text-background-light tracking-tight">Взять крысу домой</h2>
+<p class="text-text-primary/80 dark:text-background-light/80 text-base md:text-lg mt-4 max-w-3xl mx-auto">Выберите понравившуюся крысу и оставьте свои контактные данные. Мы свяжемся с вами для оформления!</p>
+<div class="mt-12 flex justify-center">
+<div class="bg-accent-green/10 dark:bg-accent-green/20 rounded-lg p-8 max-w-md w-full">
+<form class="space-y-6">
+<div>
+<label for="rat-select" class="block text-sm font-medium text-text-primary dark:text-background-light">Выберите крысу</label>
+<select id="rat-select" name="rat" class="mt-1 block w-full rounded-full border-0 px-5 py-3 text-text-primary focus:ring-2 focus:ring-primary">
+<option value="remi" selected>Реми</option>
+<option value="splinter">Сплинтер</option>
+<option value="frodo">Фродо</option>
+<option value="picasso">Пикассо</option>
+</select>
+</div>
+<div>
+<label for="contact" class="block text-sm font-medium text-text-primary dark:text-background-light">Контактные данные</label>
+<input type="text" id="contact" name="contact" class="mt-1 block w-full rounded-full border-0 px-5 py-3 text-text-primary focus:ring-2 focus:ring-primary" placeholder="Телефон или email">
+</div>
+<button type="submit" class="rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-opacity-90 transition-colors">
+Отправить
+</button>
+</form>
 </div>
 </div>
 </section>
