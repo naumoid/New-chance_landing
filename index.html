@@ -45,6 +45,9 @@
 <div class="layout-content-container flex flex-col w-full max-w-6xl px-4 md:px-10">
 <!-- TopNavBar -->
 <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-text-primary/10 px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<button id="mobile-menu-button" class="md:hidden flex items-center justify-center w-10 h-10 bg-primary text-white hover:bg-opacity-90 transition-colors rounded-md" aria-expanded="false" aria-controls="mobile-menu">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
 <a class="flex items-center gap-3 text-text-primary dark:text-background-light" href="#">
 <div class="size-6 text-primary">
 <svg fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 00-1 1v.5a1.5 1.5 0 01-3 0v-.5a1 1 0 00-1-1H6a1 1 0 01-1-1v-3a1 1 0 011-1h.5a1.5 1.5 0 000-3H6a1 1 0 01-1-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"></path></svg>
@@ -61,6 +64,20 @@
 <span>Взять крысу</span>
 </button>
 </header>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-60 hidden bg-black/50 transition-opacity duration-300 opacity-0">
+<div class="absolute left-0 top-16 bottom-0 w-72 bg-background-light dark:bg-background-dark transform -translate-x-full transition-transform duration-300 ease-in-out shadow-xl">
+<button id="close-menu" class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 text-text-primary dark:text-background-light hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+<ul role="menu" class="flex flex-col gap-6 p-6 pt-16">
+<li><a class="text-text-primary dark:text-background-light text-lg font-medium hover:text-primary transition-colors" href="#about">О нас</a></li>
+<li><a class="text-text-primary dark:text-background-light text-lg font-medium hover:text-primary transition-colors" href="#pets">Крысы</a></li>
+<li><a class="text-text-primary dark:text-background-light text-lg font-medium hover:text-primary transition-colors" href="#help">Как помочь</a></li>
+<li><a class="text-text-primary dark:text-background-light text-lg font-medium hover:text-primary transition-colors" href="#contact">Контакты</a></li>
+</ul>
+</div>
+</div>
 <main class="flex-1">
 <!-- HeroSection -->
 <section class="py-16 md:py-24">
@@ -257,4 +274,52 @@
 </div>
 </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuInner = mobileMenu.querySelector('div');
+    const body = document.body;
+
+    function toggleMenu() {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+            // Close menu
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('opacity-100');
+            mobileMenu.classList.add('opacity-0');
+            mobileMenuInner.classList.remove('translate-x-0');
+            mobileMenuInner.classList.add('-translate-x-full');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            body.style.overflow = '';
+        } else {
+            // Open menu
+            mobileMenu.classList.remove('hidden');
+            // Force reflow
+            mobileMenu.offsetHeight;
+            mobileMenu.classList.remove('opacity-0');
+            mobileMenu.classList.add('opacity-100');
+            mobileMenuInner.classList.remove('-translate-x-full');
+            mobileMenuInner.classList.add('translate-x-0');
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+            body.style.overflow = 'hidden';
+        }
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMenu);
+    closeMenuButton.addEventListener('click', toggleMenu);
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            toggleMenu();
+        }
+    });
+
+    // Close menu when clicking on menu links
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+});
+</script>
 </body></html>
